@@ -1,0 +1,32 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.App {
+    width: 75%;
+    margin: auto auto;
+
+}
+
+.header {
+    display: flex;
+    border-bottom: #202020 1px solid;
+    margin-top: 2em;
+}
+
+.header-button {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    margin-left: auto;
+}
+
+.content {
+    margin-top: 1em;
+    color: gray;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0.5em;
+}

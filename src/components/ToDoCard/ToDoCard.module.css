@@ -1,0 +1,17 @@
+.todocard {
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    padding: 1em;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    width: 100%;
+    word-break:break-all;
+    box-sizing: border-box;
+}
+
+.todocard:hover {
+    border-color: #646cff;
+}
