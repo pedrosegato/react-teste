@@ -26,7 +26,7 @@ function App() {
             </div>
             <div className='content'>
                 {items.length == 0 ? <p>Sua lista está vazia.</p> : (items.map((items, id) => (
-                    <ToDoCard key={id} id={id} onClick={e => {handleModal('edit'); setItemData(e.target.id)}}>{items}</ToDoCard>
+                    <ToDoCard key={id} id={id} onClick={e => {handleModal('edit'); setItemData(e.target.id);}}>{items}</ToDoCard>
                 )))}
             </div>
         </div>

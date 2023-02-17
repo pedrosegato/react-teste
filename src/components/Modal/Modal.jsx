@@ -6,8 +6,8 @@ export default function Modal(props) {
     const [toDo, setToDo] = useState('');
 
     useEffect(() => {
-        if (props.itemId) setToDo(props.items[props.itemId]);
-    }, [props.itemId]);
+        props.type === 'edit' ? setToDo(props.items[props.itemId]) : setToDo('');
+    }, [props.type]);
 
     const examples = [
         'Trocar água do cachorro',
@@ -19,7 +19,6 @@ export default function Modal(props) {
 
     function closeModal() {
         props.setModalType(null);
-        setToDo('');
     };
 
     function addItem() {
@@ -58,7 +57,6 @@ export default function Modal(props) {
     };
 
     if (props.type === 'edit') {
-        console.log('oi');
         return (
             <div className={styles['background']} onClick={closeModal}>
                 <div className={styles['modal']} onClick={e => {e.stopPropagation()}}>
