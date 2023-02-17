@@ -6,7 +6,7 @@ export default function Modal(props) {
     const [toDo, setToDo] = useState('');
 
     useEffect(() => {
-        if (props.itemId) setToDo(props.items[props.itemId]) ;
+        if (props.itemId) setToDo(props.items[props.itemId]);
     }, [props.itemId]);
 
     const examples = [
