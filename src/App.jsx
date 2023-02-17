@@ -1,23 +1,17 @@
-import { useEffect, useState } from 'react'
-import Button from './components/Button/Button'
-import Modal from './components/Modal/Modal'
-import ToDoCard from './components/ToDoCard/ToDoCard'
-import './App.css'
+import { useEffect, useState } from 'react';
+import Button from './components/Button/Button';
+import Modal from './components/Modal/Modal';
+import ToDoCard from './components/ToDoCard/ToDoCard';
+import './App.css';
 
 function App() {
-    const [open, setOpen] = useState(false)
-    const [editOpen, setEditOpen] = useState(false)
-    const [modalType, setModalType] = useState(null)
-    const [items, setItems] = useState([])
-    const [itemId, setItemData] = useState(0)
-
-    function openModal() {
-        setOpen(true)
-    }
+    const [modalType, setModalType] = useState(null);
+    const [items, setItems] = useState([]);
+    const [itemId, setItemData] = useState(0);
 
     function handleModal(type) {
-        setModalType(type)
-    }
+        setModalType(type);
+    };
 
     return (
         <div className="App">
@@ -36,7 +30,7 @@ function App() {
                 )))}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default App
+export default App;

@@ -1,8 +1,14 @@
-import styles from './Modal.module.css'
-import Button from '../Button/Button'
-import { useEffect, useState } from 'react'
+import styles from './Modal.module.css';
+import Button from '../Button/Button';
+import { useEffect, useState } from 'react';
 
 export default function Modal(props) {
+    const [toDo, setToDo] = useState('');
+
+    useEffect(() => {
+        if (props.itemId) setToDo(props.items[props.itemId]) ;
+    }, [props.itemId]);
+
     const examples = [
         'Trocar água do cachorro',
         'Tirar o lixo',
@@ -10,9 +16,38 @@ export default function Modal(props) {
         'Ir às compras',
         'Trocar tiro com a Polícia Militar',
     ];
-    const [toDo, setToDo] = useState('')
+
     function closeModal() {
-        props.setModalType('');
+        props.setModalType(null);
+        setToDo('');
+    };
+
+    function addItem() {
+        if (toDo != '') {
+            props.setItems(previousItems => {
+                previousItems.push(toDo);
+                return previousItems;
+            })
+            closeModal();
+        };
+    };
+
+    function saveItem() {
+        if (toDo != '') {
+            props.items[props.itemId] = toDo;
+            props.setItems([...props.items]);
+        };
+        closeModal();
+    };
+
+    function eraseItem() {
+        props.items.splice(props.itemId, 1);
+        props.setItems([...props.items]);
+        closeModal();
+    };
+
+    function handleChange(event) {
+        setToDo(event.target.value);
     };
 
     function handleKeyPress(event) {
@@ -21,40 +56,6 @@ export default function Modal(props) {
             else addItem();
         };
     };
-
-    useEffect(() => {
-        if (props.itemId) setToDo(props.items[props.itemId]) ;
-    }, [props.itemId]);
-
-    function addItem() {
-        if (toDo != '') {
-            props.setItems(previousItems => {
-                previousItems.push(toDo);
-                return previousItems;
-            })
-            props.setModalType(null);
-            setToDo('');
-        }
-    }
-
-    function saveItem() {
-        if (toDo != '') {
-            props.items[props.itemId] = toDo;
-            props.setItems([...props.items]);
-        }
-        props.setModalType(null);
-    }
-
-    function eraseItem() {
-        props.items.splice(props.itemId, 1);
-        props.setItems([...props.items]);
-        props.setModalType(null);
-        setToDo('');
-    }
-
-    function handleChange(event) {
-        setToDo(event.target.value);
-    }
 
     if (props.type === 'edit') {
         console.log('oi');
@@ -96,10 +97,10 @@ export default function Modal(props) {
                     </div>
                 </div>
             </div>
-        )
+        );
     } else {
         return (
             <></>
         );
     };
-}
+};
