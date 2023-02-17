@@ -18,8 +18,11 @@
     background-color: #242424;
     width: 30em;
     height: fit-content;
+    max-height: 30em;
+    overflow: auto;
     padding: 1em;
     border-radius: 5px;
+    word-break:break-all;
 }
 
 .modal-header {

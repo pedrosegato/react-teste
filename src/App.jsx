@@ -7,6 +7,7 @@ import './App.css'
 function App() {
     const [open, setOpen] = useState(false)
     const [editOpen, setEditOpen] = useState(false)
+    const [modalType, setModalType] = useState(null)
     const [items, setItems] = useState([])
     const [itemId, setItemData] = useState(0)
 
@@ -14,26 +15,24 @@ function App() {
         setOpen(true)
     }
 
-    function handleEdit(event) {
-        setEditOpen(true)
-        setItemData(event.target.id)
+    function handleModal(type) {
+        setModalType(type)
     }
 
     return (
         <div className="App">
-            {items.length > 0 && (
-                <Modal open={editOpen} setOpen={setEditOpen} items={items} setItems={setItems} itemId={itemId} />
-            )}
-            <Modal open={open} setOpen={setOpen} items={items} setItems={setItems} />
+            <Modal items={items} setItems={setItems} type={modalType} itemId={itemId} setModalType={setModalType} />
             <div className='header'>
                 <h1>Lista de afazeres</h1>
                 <div className='header-button'>
-                    <Button color='black' onClick={openModal}>Adicionar</Button>
+                    <Button color='black' onClick={(e) => {
+                        handleModal('add')
+                    }}>Adicionar</Button>
                 </div>
             </div>
             <div className='content'>
                 {items.length == 0 ? <p>Sua lista está vazia.</p> : (items.map((items, id) => (
-                    <ToDoCard key={id} id={id} onClick={handleEdit}>{items}</ToDoCard>
+                    <ToDoCard key={id} id={id} onClick={e => {handleModal('edit'); setItemData(e.target.id)}}>{items}</ToDoCard>
                 )))}
             </div>
         </div>
